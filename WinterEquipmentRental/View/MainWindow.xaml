@@ -1,0 +1,138 @@
+﻿<Window x:Class="WinterEquipmentRental.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WinterEquipmentRental"
+        mc:Ignorable="d"
+        Title="Прокат зимнего инвентаря" MinHeight="475" MaxHeight="475" MinWidth="810" MaxWidth="810"
+        WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow">
+    <Window.Resources>
+        <local:RemainingTimeConverter x:Key="RemainingTimeConverter"/>
+
+        <SolidColorBrush x:Key="LightGrayColor" Color="#D3D3D3"/>
+        <SolidColorBrush x:Key="DarkGrayColor" Color="#A0A0A0"/>
+        <SolidColorBrush x:Key="OrangeColor" Color="#FFA500"/>
+
+        <Style x:Key="LightGrayTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Background" Value="{DynamicResource LightGrayColor}"/>
+        </Style>
+
+        <Style x:Key="LightGrayTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="Background" Value="{DynamicResource LightGrayColor}"/>
+        </Style>
+
+        <Style x:Key="LightGrayDatePickerStyle" TargetType="DatePicker">
+            <Setter Property="Background" Value="{DynamicResource LightGrayColor}"/>
+        </Style>
+
+        <Style x:Key="DarkGrayLabelStyle" TargetType="Label">
+            <Setter Property="Foreground" Value="{DynamicResource DarkGrayColor}"/>
+        </Style>
+
+        <Style x:Key="OrangeButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{DynamicResource OrangeColor}"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+        <Style TargetType="TabItem" x:Key="OrangeTabItemStyle">
+            <Setter Property="Background" Value="Orange"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+
+        <Style x:Key="DarkGrayListViewStyle" TargetType="ListView">
+            <Setter Property="Background" Value="DarkGray"/>
+        </Style>
+    </Window.Resources>
+    <Grid Background="{DynamicResource OrangeColor}">
+        <TabControl>
+            <TabItem Header="Запись клиента" Width="390" Style="{StaticResource OrangeTabItemStyle}">
+                <Grid Background="{DynamicResource DarkGrayColor}">
+                    <StackPanel Margin="10" Background="{DynamicResource DarkGrayColor}">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                            <TextBlock Text="Фамилия:"/>
+                            <TextBox Text="{Binding CustomerSurname, Mode=TwoWay}" Width="200" Margin="5,0,0,0" Style="{StaticResource LightGrayTextBoxStyle}"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                            <TextBlock Text="Имя:"/>
+                            <TextBox Text="{Binding CustomerName, Mode=TwoWay}" Width="226" Margin="5,0,0,0" Style="{StaticResource LightGrayTextBoxStyle}"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                            <TextBlock Text="Телефон:"/>
+                            <TextBox Text="{Binding CustomerPhone, Mode=TwoWay}" Width="202" Margin="5,0,0,0" Style="{StaticResource LightGrayTextBoxStyle}"/>
+                        </StackPanel>
+                        
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                            <TextBlock Text="Дата аренды:"/>
+                            <DatePicker SelectedDate="{Binding RentalDate, Mode=TwoWay}" Width="178" Margin="5,0,0,0" Style="{StaticResource LightGrayDatePickerStyle}"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                            <TextBlock Text="Часы аренды:"/>
+                            <TextBox Text="{Binding RentalHours, Mode=TwoWay}" Width="176" Margin="5,0,0,0" Style="{StaticResource LightGrayTextBoxStyle}"/>
+                        </StackPanel>
+                        
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="5">
+                                <Label Content="Доступно плюшек:" />
+                                <TextBlock Text="{Binding AvailablePlushQuantity}" Width="25" VerticalAlignment="Center" Margin="0,0,0,6" Style="{StaticResource LightGrayTextBlockStyle}"/>
+                                <Label Content="Плюшки:" VerticalAlignment="Center" Margin="0,0,0,6"/>
+                                <TextBox Text="{Binding PlushQuantity, Mode=TwoWay}" Width="25" VerticalAlignment="Center" Margin="0,0,0,5" Style="{StaticResource LightGrayTextBoxStyle}"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="5">
+                                <Label Content="Доступно сноубордов:" />
+                                <TextBlock Text="{Binding AvailableSnowboardQuantity}" Width="25" VerticalAlignment="Center" Margin="0,0,0,6" Style="{StaticResource LightGrayTextBlockStyle}"/>
+                                <Label Content="Сноуборды:"  VerticalAlignment="Center" Margin="0,0,0,6"/>
+                                <TextBox Text="{Binding SnowboardQuantity, Mode=TwoWay}" Width="25" VerticalAlignment="Center" Margin="0,0,0,5" Style="{StaticResource LightGrayTextBoxStyle}"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="5">
+                                <Label Content="Доступно горных лыж:" />
+                                <TextBlock Text="{Binding AvailableSkisQuantity}" Width="25" VerticalAlignment="Center" Margin="0,0,0,6" Style="{StaticResource LightGrayTextBlockStyle}"/>
+                                <Label Content="Горные лыжи:" VerticalAlignment="Center" Margin="0,0,0,6"/>
+                                <TextBox Text="{Binding SkisQuantity, Mode=TwoWay}" Width="25" VerticalAlignment="Center" Margin="0,0,0,5" Style="{StaticResource LightGrayTextBoxStyle}"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="5">
+                                <Label Content="Доступно обычных лыж:" />
+                                <TextBlock Text="{Binding AvailableRegularSkisQuantity}" Width="25" VerticalAlignment="Center" Margin="0,0,0,6" Style="{StaticResource LightGrayTextBlockStyle}"/>
+                                <Label Content="Обычные лыжи:" VerticalAlignment="Center" Margin="0,0,0,6"/>
+                                <TextBox Text="{Binding RegularSkisQuantity, Mode=TwoWay}" Width="25" VerticalAlignment="Center" Margin="0,0,0,5" Style="{StaticResource LightGrayTextBoxStyle}"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <Button Content="Добавить запись"  Height="30" Command="{Binding AddRentalCommand}" Style="{StaticResource OrangeButtonStyle}"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Информация об аренде" Width="390" Style="{StaticResource OrangeTabItemStyle}">
+                <Grid>
+                    <StackPanel Margin="0,0,0,10" Background="{DynamicResource DarkGrayColor}">
+                        <StackPanel  HorizontalAlignment="Center" Orientation="Horizontal" Margin="10,5,10,5">
+                            <Button Content="Обновить время" Command="{Binding UpdateTimeCommand}" Width="120" Height="30" Margin="0,0,60,0" Style="{StaticResource OrangeButtonStyle}"/>
+                            <Button Content="Удалить запись" Command="{Binding DeleteRentalCommand}" CommandParameter="{Binding SelectedRental}" Width="120" Height="30" Margin="5,0,0,0" Style="{StaticResource OrangeButtonStyle}"/>
+                        </StackPanel>
+                        <ListView  ItemsSource="{Binding Rentals}" Style="{StaticResource DarkGrayListViewStyle}" SelectedItem="{Binding SelectedRental}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Фамилия" Width="70" DisplayMemberBinding="{Binding Surname}"/>
+                                    <GridViewColumn Header="Имя" Width="65" DisplayMemberBinding="{Binding Name}"/>
+                                    <GridViewColumn Header="Телефон" Width="70" DisplayMemberBinding="{Binding Phone}"/>
+                                    <GridViewColumn Header="Дата аренды" Width="80" DisplayMemberBinding="{Binding RentalDate}"/>
+                                    <GridViewColumn Header="Плюшка" Width="70" DisplayMemberBinding="{Binding PlushQuantity}"/>
+                                    <GridViewColumn Header="Сноуборд" Width="70" DisplayMemberBinding="{Binding SnowboardQuantity}"/>
+                                    <GridViewColumn Header="Горные лыжи" Width="85" DisplayMemberBinding="{Binding SkisQuantity}"/>
+                                    <GridViewColumn Header="Обычные лыжи" Width="100" DisplayMemberBinding="{Binding RegularSkisQuantity}"/>
+                                    <GridViewColumn Header="Сумма" Width="65" DisplayMemberBinding="{Binding TotalAmount}"/>
+                                    <GridViewColumn Header="Остаток времени" Width="100" DisplayMemberBinding="{Binding ReturnDate, Converter={StaticResource RemainingTimeConverter}}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
